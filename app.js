@@ -8,7 +8,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
-let connectDB = require('./config/db')
+// const connectDB = require('./config/db')
 
 // load config
 dotenv.config({path: './config/config.env'})
@@ -21,7 +21,7 @@ require('./config/passport')(passport)
 const app = express()
 const PORT = process.env.PORT || 3000
 
-connectDB = async () => {
+connectDB = require('./config/db') = async () => {
   try {
     const conn =  mongoose.connect(process.env.MONGO_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
@@ -101,7 +101,7 @@ app.use('/stories', require('./routes/stories'))
   res.json({"every thing":"is awesome"})
 })
 // connect to DB before listening
-await connectDB().then(() => {
+connectDB().then(() => {
 app.listen(
     PORT, 
     () => {
