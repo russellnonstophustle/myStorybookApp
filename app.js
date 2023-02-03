@@ -8,7 +8,6 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
-const { MongoClient } = require('mongodb');
 let connectDB = require('./config/db')
 
 // load config
@@ -95,13 +94,17 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
+app.all('*', (req,res) => {
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
-
-
+  res.json({"every thing":"is awesome"})
+})
+// connect to DB before listening
 await connectDB().then(() => {
 app.listen(
     PORT, 
-    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+    () => {
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+  })
 })
