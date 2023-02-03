@@ -16,9 +16,19 @@ dotenv.config({path: './config/config.env'})
 // Passport config
 require('./config/passport')(passport)
 
-connectDB()
-
+// connect DB
 const app = express()
+
+connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+
 
 // Body Parser
 app.use(express.urlencoded({ extended: false}))
@@ -87,7 +97,8 @@ app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
 const PORT = process.env.PORT || 3000
 
-
+connectDB().then(() => {
 app.listen(
     PORT, 
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+})
