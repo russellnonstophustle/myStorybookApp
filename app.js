@@ -100,7 +100,7 @@ app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
 
 
-connectDB().then(() => {
+await connectDB().then(() => {
 app.listen(
     PORT, 
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
