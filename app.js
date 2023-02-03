@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
+const { MongoClient } = require('mongodb');
 const connectDB = require('./config/db')
 
 // load config
@@ -16,8 +17,10 @@ dotenv.config({path: './config/config.env'})
 // Passport config
 require('./config/passport')(passport)
 
+
 // connect DB
 const app = express()
+const PORT = process.env.PORT || 3000
 
 connectDB = async () => {
   try {
@@ -95,7 +98,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
-const PORT = process.env.PORT || 3000
+
 
 connectDB().then(() => {
 app.listen(
