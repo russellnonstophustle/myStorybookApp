@@ -1,0 +1,44 @@
+p {
+    margin: 10px 0 !important;
+}
+
+.login-container {
+    width: 400px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.fa-small {
+    font-size: 16px!important;
+}
+
+.btn-float {
+    float: left;
+    margin-right: 10px;
+}
+
+.img-small {
+    max-width: 180px
+}
+
+#loginPage{
+    background-image: url('/photos/journalBackground.jpg');
+    background-size: cover;
+}
+
+#mainPages {
+    background-image: url('/photos/storiesBackground1.jpg');
+    background-size: cover;
+    background-blend-mode: lighten;
+}
+
+.fb-login-button {
+    margin: 5px 0 0 0;
+    box-shadow: 0 2px 5px 1px rgba(0,0,0,.5);
+    border-radius: 7%;
+}
+
+.google-btn {
+    width: 240px;
+    height: 40px;
+}
