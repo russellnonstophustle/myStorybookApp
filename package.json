@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
-    "start": "NODE_ENV=production node app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app"
   },
   "author": "Chris Russell",
