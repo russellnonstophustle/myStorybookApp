@@ -1,5 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const FacebookStrategy = require('passport-facebook').Strategy
+// const FacebookStrategy = require('passport-facebook').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
@@ -37,17 +37,17 @@ module.exports = function (passport) {
       )
     )
 
-    passport.use(new FacebookStrategy({
-      clientID: process.env.CLIENT_ID_FB,
-      clientSecret: process.env.CLIENT_SECRET_FB,
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    function(accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
-    }
-  ));
+  //   passport.use(new FacebookStrategy({
+  //     clientID: process.env.CLIENT_ID_FB,
+  //     clientSecret: process.env.CLIENT_SECRET_FB,
+  //     callbackURL: "http://localhost:3000/auth/facebook/callback"
+  //   },
+  //   function(accessToken, refreshToken, profile, cb) {
+  //     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+  //       return cb(err, user);
+  //     });
+  //   }
+  // ));
   
     passport.serializeUser((user, done) => {
       done(null, user.id)
