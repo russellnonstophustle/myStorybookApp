@@ -8,7 +8,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
-// const connectDB = require('./config/db')
+const connectDB = require('./config/db')
 
 // load config
 dotenv.config({path: './config/config.env'})
@@ -16,21 +16,9 @@ dotenv.config({path: './config/config.env'})
 // Passport config
 require('./config/passport')(passport)
 
+connectDB()
 
-// connect DB
 const app = express()
-const PORT = process.env.PORT || 3000
-
-connectDB = require('./config/db') = async () => {
-  try {
-    const conn =  mongoose.connect(process.env.MONGO_URI);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-}
-
 
 // Body Parser
 app.use(express.urlencoded({ extended: false}))
@@ -94,17 +82,12 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
-app.all('*', (req,res) => {
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
-  res.json({"every thing":"is awesome"})
-})
-// connect to DB before listening
-connectDB().then(() => {
+const PORT = process.env.PORT || 3000
+
+
 app.listen(
     PORT, 
-    () => {
-    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-  })
-})
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
