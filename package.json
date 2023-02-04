@@ -4,8 +4,8 @@
   "description": "App to show public and private stories",
   "main": "app.js",
   "scripts": {
-    "build": "cross-env-shell NODE_ENV=production",
-    "start": "cross-env-shell NODE_ENV=production node app.js",
+    "build": "cross-env NODE_ENV=production",
+    "start": "node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app"
   },
   "author": "Chris Russell",
