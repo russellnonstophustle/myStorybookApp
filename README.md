@@ -3,7 +3,7 @@
 
 **Link to project:** https://deardiary.cyclic.app/
 
-![alt tag](http://placecorgi.com/1200/650)
+ https://deardiary.cyclic.app/
 
 ## How It's Made:
 
