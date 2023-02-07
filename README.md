@@ -3,7 +3,6 @@
 
 **Link to project:** https://deardiary.cyclic.app/
 
- https://deardiary.cyclic.app/
 
 ## How It's Made:
 
